@@ -93,20 +93,39 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
 
+  var passwordSpecial = false;
+  var passwordNumeric = false;
+  var passwordLower = false;
+  var passwordUpper = false;
+  var passwordLength = prompt("Please enter a number between 8 and 128 to choose your password length.");
+ 
+  // https://www.w3schools.com/js/js_validation.asp
+  if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+      alert("Please enter a number between 8 and 128.")
+      getPasswordOptions();
+  } else {
+    alert("Password meets length criteria!"); 
+    return passwordLength;
+  }
+
+  // var passwordContains = confirm(`Would you like your password to contain ${string}?`)
+
 }
 
+// getPasswordOptions();
+
+
+
 // Function for getting a random element from an array
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandom(arr) {
   randomElement = Math.floor(Math.random() * arr.length);
   return arr[randomElement];
 }
 
-getRandom(upperCasedCharacters);
-console.log(getRandom(upperCasedCharacters));
 
 // Function to generate password with user input
 function generatePassword() {
-
 }
 
 // Get references to the #generate element
