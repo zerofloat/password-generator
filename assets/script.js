@@ -97,6 +97,7 @@ function getPasswordOptions() {
   var passwordNumeric = false;
   var passwordLower = false;
   var passwordUpper = false;
+
   var passwordLength = prompt("Please enter a number between 8 and 128 to choose your password length.");
  
   // https://www.w3schools.com/js/js_validation.asp
@@ -111,8 +112,6 @@ function getPasswordOptions() {
   // var passwordContains = confirm(`Would you like your password to contain ${string}?`)
 
 }
-
-// getPasswordOptions();
 
 
 
@@ -140,4 +139,5 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+// generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener('click', getPasswordOptions);
