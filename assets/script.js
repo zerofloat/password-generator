@@ -97,6 +97,8 @@ function getPasswordOptions() {
   var passwordNumeric = false;
   var passwordLower = false;
   var passwordUpper = false;
+  var characterTypes = ["lowercase characters", "uppercase characters", "numbers", "special characters"];
+  var passwordPrompt = [];
 
   var passwordLength = prompt("Please enter a number between 8 and 128 to choose your password length.");
  
@@ -106,12 +108,17 @@ function getPasswordOptions() {
       getPasswordOptions();
   } else {
     alert("Password meets length criteria!"); 
-    return passwordLength;
+  
+  var promptResponse = [];
+  for (let i in characterTypes) {
+    promptResponse = (confirm(`Would you like your password to contain ${characterTypes[i]}?`));
+    if (promptResponse === true || 'false') { //use false as string to pass non-falsy value to passwordPrompt array
+      passwordPrompt.push(promptResponse);
+    }
   }
-
-  // var passwordContains = confirm(`Would you like your password to contain ${string}?`)
-
-}
+    console.log(passwordPrompt);
+    return passwordLength;
+  }}
 
 
 
