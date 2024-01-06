@@ -92,13 +92,30 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
-  var passwordSpecial = false;
-  var passwordNumeric = false;
-  var passwordLower = false;
-  var passwordUpper = false;
   var characterTypes = ["lowercase characters", "uppercase characters", "numbers", "special characters"];
   var passwordPrompt = [];
+  // https://www.geeksforgeeks.org/how-to-create-an-object-from-two-arrays-in-javascript/
+  function typesRequired(types, boolean) {
+    var obj = Object.fromEntries(
+      types.map((type, index) => [type, boolean[index]]),
+    );
+    return obj;
+  }
+  
+  
+  // = passwordPrompt.map(p => 
+  //     p.reduce(
+  //       (typesRequired, field, index) => ({...typesRequired, [characterTypes[index]]: field}),
+  //     {}));
+  
+  
+  // var passwordPrompt = 
+  // {
+  //   passwordSpecial: false,
+  //   passwordNumeric: false,
+  //   passwordLower: false,
+  //   passwordUpper: false
+  // };
 
   var passwordLength = prompt("Please enter a number between 8 and 128 to choose your password length.");
  
@@ -112,11 +129,13 @@ function getPasswordOptions() {
   var promptResponse = [];
   for (let i in characterTypes) {
     promptResponse = (confirm(`Would you like your password to contain ${characterTypes[i]}?`));
-    if (promptResponse === true || 'false') { //use false as string to pass non-falsy value to passwordPrompt array
+    if (promptResponse === 'true' || 'false') { //use false as string to pass non-falsy value to passwordPrompt array
       passwordPrompt.push(promptResponse);
     }
   }
     console.log(passwordPrompt);
+    var result = typesRequired(characterTypes, passwordPrompt);
+    console.log(result);
     return passwordLength;
   }}
 
