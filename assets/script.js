@@ -89,11 +89,13 @@ var upperCasedCharacters = [
 ];
 
 //-- arrays end --
+//initialize global variables
+var characterTypes = ["lowercase characters", "uppercase characters", "numeric characters", "special characters"];
+var passwordPrompt = [];
+var passwordLength = 0;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var characterTypes = ["lowercase characters", "uppercase characters", "numbers", "special characters"];
-  var passwordPrompt = [];
   // https://www.geeksforgeeks.org/how-to-create-an-object-from-two-arrays-in-javascript/
   function typesRequired(types, boolean) {
     var obj = Object.fromEntries(
@@ -101,22 +103,8 @@ function getPasswordOptions() {
     );
     return obj;
   }
+  var charObj = typesRequired(characterTypes, passwordPrompt);
   
-  
-  // = passwordPrompt.map(p => 
-  //     p.reduce(
-  //       (typesRequired, field, index) => ({...typesRequired, [characterTypes[index]]: field}),
-  //     {}));
-  
-  
-  // var passwordPrompt = 
-  // {
-  //   passwordSpecial: false,
-  //   passwordNumeric: false,
-  //   passwordLower: false,
-  //   passwordUpper: false
-  // };
-
   var passwordLength = prompt("Please enter a number between 8 and 128 to choose your password length.");
  
   // https://www.w3schools.com/js/js_validation.asp
@@ -127,17 +115,24 @@ function getPasswordOptions() {
     alert("Password meets length criteria!"); 
   
   var promptResponse = [];
+  var falseCount = 0;
   for (let i in characterTypes) {
     promptResponse = (confirm(`Would you like your password to contain ${characterTypes[i]}?`));
-    if (promptResponse === 'true' || 'false') { //use false as string to pass non-falsy value to passwordPrompt array
+    if (promptResponse === true) { //use false as string to pass non-falsy value to passwordPrompt array
       passwordPrompt.push(promptResponse);
-    }
+    } else
+      falseCount ++;
+      passwordPrompt.push(promptResponse);
+      console.log(falseCount);
   }
-    console.log(passwordPrompt);
-    var result = typesRequired(characterTypes, passwordPrompt);
-    console.log(result);
+    if (falseCount = 4) {
+      alert("Password must container at least one character type. Please try again!");
+      getPasswordOptions();
+      
+    }
     return passwordLength;
-  }}
+  }
+}
 
 
 
@@ -151,7 +146,19 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-}
+// character types are known -> charObj
+// p/w length is known -> passwordLength - for loop up to passwordLength
+// if multiple character types selected, we can just concat the arrays and iterate through them to get a random element
+// output pw = concatenated string from each string of random chars - string.substring to define max length
+
+// for (let i = 0; i < passwordLength.length; i++) {
+  // if (charObj) {
+    
+  }  
+  
+
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
