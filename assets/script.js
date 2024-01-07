@@ -96,6 +96,7 @@ var passwordLength = 0;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  passwordPrompt.length = 0;
   // https://www.geeksforgeeks.org/how-to-create-an-object-from-two-arrays-in-javascript/
   function typesRequired(types, boolean) {
     var obj = Object.fromEntries(
@@ -124,6 +125,7 @@ function getPasswordOptions() {
       falseCount ++;
       passwordPrompt.push(promptResponse);
       console.log(falseCount);
+      console.log(passwordPrompt);
   }
     if (falseCount = 4) {
       alert("Password must container at least one character type. Please try again!");
