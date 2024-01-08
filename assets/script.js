@@ -109,20 +109,6 @@ var upperSpecial = upperCasedCharacters.concat(specialCharacters);
 var upperNumeric = upperCasedCharacters.concat(numericCharacters);
 var upperSpecialNumeric = upperSpecial.concat(numericCharacters);
 var specialNumeric = specialCharacters.concat(numericCharacters);
-// initialize global variables
-// var characterTypes = ["lowercase characters", "uppercase characters", "numeric characters", "special characters"];
-// var passwordPrompt = [];
-// var passwordLength = 0;
-// var charsToInclude;
-
-// https://www.geeksforgeeks.org/how-to-create-an-object-from-two-arrays-in-javascript/
-    // function typesRequired(types, string) {
-    //   var obj = Object.fromEntries(
-    //     types.map((type, index) => [type, string[index]]),
-    //   );
-    // var charsToInclude = typesRequired(characterTypes, passwordPrompt);}
-    
-// return obj;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -149,34 +135,6 @@ passwordLength = Number(prompt("Please enter a number between 8 and 128 to choos
 generatePassword();
 }
 
-
-  // var promptResponse = [];
-  // var falseCount = 0;
-  // for (let i in characterTypes) {
-  //   promptResponse = (confirm(`Would you like your password to contain ${characterTypes[i]}?`));
-  //   if (promptResponse === 'true') {
-  //     passwordPrompt.push(promptResponse);
-
-  //   } else if (promptResponse === 'false')
-  //     falseCount++;
-  //     passwordPrompt.push(promptResponse);
-  //     console.log(falseCount);
-  //     console.log(passwordPrompt);
-  // }
-  //   if (falseCount === 4) {
-  //     alert("Password must container at least one character type. Please try again!");
-  //     getPasswordOptions();
-      
-  //   }
-  //   } generatePassword();
-  //   return passwordLength;
-
-
-
-
-//replace promptResponse variables and string literals with separate vars for each character type to then call later
-
-
 // Function for getting a random element from an array
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandom(arr) {
@@ -188,109 +146,92 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
     passwordOutput = "";
-    console.log(passwordLength);
 // lowercase    
   if (lowerRequired === true && upperRequired === false && numericRequired === false && specialRequired === false) {
     for (let i = 0; i < passwordLength; i++) {
       getRandom(lowerCasedCharacters);
       passwordOutput += randomChar;
-      console.log(passwordOutput);      
     }
 // uppercase
   } else if (lowerRequired === false && upperRequired === true && numericRequired === false && specialRequired === false) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(upperCasedCharacters);
         passwordOutput += randomChar;
-        console.log(passwordOutput); 
       }
 // numeric
   } else if (lowerRequired === false && upperRequired === false && numericRequired === true && specialRequired === false) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(numericCharacters);
         passwordOutput += randomChar;
-        console.log(passwordOutput);
     }
 // special
   } else if (lowerRequired === false && upperRequired === false && numericRequired === false && specialRequired === true) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(specialCharacters);
         passwordOutput += randomChar;
-        console.log(passwordOutput);    
     } 
 // lower + upper
   } else if (lowerRequired === true && upperRequired === true && numericRequired === false && specialRequired === false) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(lowerUpper);
         passwordOutput += randomChar;
-        console.log(passwordOutput); 
     }
 // lower + numeric
   } else if (lowerRequired === true && upperRequired === false && numericRequired === true && specialRequired === false) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(lowerNumeric);
         passwordOutput += randomChar;
-        console.log(passwordOutput); 
     }
 // lower + special
   } else if (lowerRequired === true && upperRequired === false && numericRequired === false && specialRequired === true) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(lowerSpecial);
         passwordOutput += randomChar;
-        console.log(passwordOutput);     
     } 
 // lower + upper + numeric
   } else if (lowerRequired === true && upperRequired === true && numericRequired === true && specialRequired === false) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(lowerUpperNumeric);
         passwordOutput += randomChar;
-        console.log(passwordOutput);        
     }
 // lower + upper + special
   } else if (lowerRequired === true && upperRequired === true && numericRequired === false && specialRequired === true) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(lowerUpperSpecial);
         passwordOutput += randomChar;
-        console.log(passwordOutput);        
     }
 // lower + upper + special + numeric
   } else if (lowerRequired === true && upperRequired === true && numericRequired === true && specialRequired === true) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(lowerUpperSpecial);
         passwordOutput += randomChar;
-        console.log(passwordOutput);        
     }
 // upper + special
   } else if (lowerRequired === false && upperRequired === true && numericRequired === false && specialRequired === true) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(upperSpecial);
         passwordOutput += randomChar;
-        console.log(passwordOutput);  
     } 
 // upper + numeric
   } else if (lowerRequired === false && upperRequired === true && numericRequired === true && specialRequired === false) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(upperNumeric);
         passwordOutput += randomChar;
-        console.log(passwordOutput);   
     }
 // upper + special + numeric
   } else if (lowerRequired === false && upperRequired === true && numericRequired === true && specialRequired === true) {
       for (let i = 0; i < passwordLength; i++) {
         getRandom(upperSpecialNumeric);
         passwordOutput += randomChar;
-        console.log(passwordOutput); 
     }
 // special + numeric
   } else if (lowerRequired === false && upperRequired === false && numericRequired === true && specialRequired === true)
       for (let i = 0; i < passwordLength; i++) {
         getRandom(specialNumeric);
         passwordOutput += randomChar;
-        console.log(passwordOutput);
       }
 writePassword();
 }
-
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -303,6 +244,5 @@ function writePassword() {
   passwordText.value = passwordOutput;
 }
 
-// Add event listener to generate button
-// generateBtn.addEventListener('click', writePassword);
+// Add event listener to generate button and call first function
 generateBtn.addEventListener('click', getPasswordOptions);
