@@ -283,21 +283,11 @@ function generatePassword() {
 // special + numeric
   } else if (lowerRequired === false && upperRequired === false && numericRequired === true && specialRequired === true)
       for (let i = 0; i < passwordLength; i++) {
-        getRandom(specialNumeric)
+        getRandom(specialNumeric);
+        passwordOutput += randomChar;
+        console.log(passwordOutput);
       }
-
-
-
-
-  // p/w length is known -> passwordLength - for loop up to passwordLength
-// if multiple character types selected, we can just concat the arrays and iterate through them to get a random element
-// output pw = concatenated string from each string of random chars - string.substring to define max length
-
-// for (let i = 0; i < passwordLength.length; i++) {
-    
-   
-  
-
+}
 
 
 
