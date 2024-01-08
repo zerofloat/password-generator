@@ -89,16 +89,44 @@ var upperCasedCharacters = [
 ];
 
 //-- arrays end --
-//initialize global variables
+// init global vars
+var passwordOutput = "";
+var passwordLength;
+var lowerRequired;
+var upperRequired;
+var numericRequired;
+var specialRequired;
+var randomChar;
+//concat arrays for all possible password combinations
+var lowerUpper = lowerCasedCharacters.concat(upperCasedCharacters);
+var lowerSpecial = lowerCasedCharacters.concat(specialCharacters);
+var lowerNumeric = lowerCasedCharacters.concat(numericCharacters);
+var lowerUpperSpecial = lowerUpper.concat(specialCharacters);
+var lowerUpperSpecialNumeric = lowerUpperSpecial.concat(numericCharacters);
+var upperSpecial = upperCasedCharacters.concat(specialCharacters);
+var upperNumeric = upperCasedCharacters.concat(numericCharacters);
+var upperSpecialNumeric = upperSpecial.concat(numericCharacters);
+var specialNumeric = specialCharacters.concat(numericCharacters);
+// initialize global variables
 // var characterTypes = ["lowercase characters", "uppercase characters", "numeric characters", "special characters"];
 // var passwordPrompt = [];
-var passwordLength = 0;
+// var passwordLength = 0;
+// var charsToInclude;
+
+// https://www.geeksforgeeks.org/how-to-create-an-object-from-two-arrays-in-javascript/
+    // function typesRequired(types, string) {
+    //   var obj = Object.fromEntries(
+    //     types.map((type, index) => [type, string[index]]),
+    //   );
+    // var charsToInclude = typesRequired(characterTypes, passwordPrompt);}
+    
+// return obj;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-// passwordPrompt.length = 0;  
 
-var passwordLength = prompt("Please enter a number between 8 and 128 to choose your password length.");
+
+passwordLength = Number(prompt("Please enter a number between 8 and 128 to choose your password length."));
  
   // https://www.w3schools.com/js/js_validation.asp
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
@@ -106,35 +134,43 @@ var passwordLength = prompt("Please enter a number between 8 and 128 to choose y
       getPasswordOptions();
   } else {
     alert("Password meets length criteria!"); 
-  
+    lowerRequired = confirm("Would you like your password to include lowercase characters?");
+    upperRequired = confirm("Would you like your password to include uppercase characters?");
+    numericRequired = confirm("Would you like your password to include numeric characters?");
+    specialRequired = confirm("Would you like your password to include lowercase characters?");
+
+  if (lowerRequired === false && upperRequired === false && numericRequired === false && specialRequired === false) {
+      alert("Password must contain at least one character type. Please try again!");
+      getPasswordOptions();
+  } 
+}
+generatePassword();
+}
+
+
   // var promptResponse = [];
   // var falseCount = 0;
   // for (let i in characterTypes) {
   //   promptResponse = (confirm(`Would you like your password to contain ${characterTypes[i]}?`));
-    if (promptResponse === 'true') {
-      passwordPrompt.push(promptResponse);
+  //   if (promptResponse === 'true') {
+  //     passwordPrompt.push(promptResponse);
 
-    } else if (promptResponse === 'false')
-      falseCount ++;
-      passwordPrompt.push(promptResponse);
-      console.log(falseCount);
-      console.log(passwordPrompt);
-  }
-    if (falseCount === 4) {
-      alert("Password must container at least one character type. Please try again!");
-      getPasswordOptions();
+  //   } else if (promptResponse === 'false')
+  //     falseCount++;
+  //     passwordPrompt.push(promptResponse);
+  //     console.log(falseCount);
+  //     console.log(passwordPrompt);
+  // }
+  //   if (falseCount === 4) {
+  //     alert("Password must container at least one character type. Please try again!");
+  //     getPasswordOptions();
       
-    }
-    // // https://www.geeksforgeeks.org/how-to-create-an-object-from-two-arrays-in-javascript/
-    // function typesRequired(types, string) {
-    //   var obj = Object.fromEntries(
-    //     types.map((type, index) => [type, string[index]]),
-    //   );
-    // var charsToInclude = typesRequired(characterTypes, passwordPrompt);
-    
-    // return obj;
-    } generatePassword();
-    return passwordLength;
+  //   }
+  //   } generatePassword();
+  //   return passwordLength;
+
+
+
 
 //replace promptResponse variables and string literals with separate vars for each character type to then call later
 
@@ -143,13 +179,21 @@ var passwordLength = prompt("Please enter a number between 8 and 128 to choose y
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandom(arr) {
   randomElement = Math.floor(Math.random() * arr.length);
-  return arr[randomElement];
+  return randomChar = arr[randomElement];
 }
 
 
 // Function to generate password with user input
 function generatePassword() {
-console.log(charsToInclude);
+    passwordOutput = "";
+    console.log(passwordLength);
+  // if (lowerRequired === true && upperRequired === false && numericRequired === false && specialRequired === false) {
+    for (let i = 0; i < passwordLength; i++) {
+      getRandom(lowerCasedCharacters);
+      passwordOutput += randomChar;
+      console.log(passwordOutput);      
+    }
+  // } else if ()
 }
 
 // character types are known -> charObj
