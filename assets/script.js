@@ -92,6 +92,7 @@ var upperCasedCharacters = [
 // init global vars
 var passwordOutput = "";
 var passwordLength;
+//single char arrays
 var lowerRequired;
 var upperRequired;
 var numericRequired;
@@ -101,6 +102,7 @@ var randomChar;
 var lowerUpper = lowerCasedCharacters.concat(upperCasedCharacters);
 var lowerSpecial = lowerCasedCharacters.concat(specialCharacters);
 var lowerNumeric = lowerCasedCharacters.concat(numericCharacters);
+var lowerUpperNumeric = lowerUpper.concat(numericCharacters);
 var lowerUpperSpecial = lowerUpper.concat(specialCharacters);
 var lowerUpperSpecialNumeric = lowerUpperSpecial.concat(numericCharacters);
 var upperSpecial = upperCasedCharacters.concat(specialCharacters);
@@ -137,7 +139,7 @@ passwordLength = Number(prompt("Please enter a number between 8 and 128 to choos
     lowerRequired = confirm("Would you like your password to include lowercase characters?");
     upperRequired = confirm("Would you like your password to include uppercase characters?");
     numericRequired = confirm("Would you like your password to include numeric characters?");
-    specialRequired = confirm("Would you like your password to include lowercase characters?");
+    specialRequired = confirm("Would you like your password to include special characters?");
 
   if (lowerRequired === false && upperRequired === false && numericRequired === false && specialRequired === false) {
       alert("Password must contain at least one character type. Please try again!");
@@ -187,22 +189,111 @@ function getRandom(arr) {
 function generatePassword() {
     passwordOutput = "";
     console.log(passwordLength);
-  // if (lowerRequired === true && upperRequired === false && numericRequired === false && specialRequired === false) {
+// lowercase    
+  if (lowerRequired === true && upperRequired === false && numericRequired === false && specialRequired === false) {
     for (let i = 0; i < passwordLength; i++) {
       getRandom(lowerCasedCharacters);
       passwordOutput += randomChar;
       console.log(passwordOutput);      
     }
-  // } else if ()
-}
+// uppercase
+  } else if (lowerRequired === false && upperRequired === true && numericRequired === false && specialRequired === false) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(upperCasedCharacters);
+        passwordOutput += randomChar;
+        console.log(passwordOutput); 
+      }
+// numeric
+  } else if (lowerRequired === false && upperRequired === false && numericRequired === true && specialRequired === false) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(numericCharacters);
+        passwordOutput += randomChar;
+        console.log(passwordOutput);
+    }
+// special
+  } else if (lowerRequired === false && upperRequired === false && numericRequired === false && specialRequired === true) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(specialCharacters);
+        passwordOutput += randomChar;
+        console.log(passwordOutput);    
+    } 
+// lower + upper
+  } else if (lowerRequired === true && upperRequired === true && numericRequired === false && specialRequired === false) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(lowerUpper);
+        passwordOutput += randomChar;
+        console.log(passwordOutput); 
+    }
+// lower + numeric
+  } else if (lowerRequired === true && upperRequired === false && numericRequired === true && specialRequired === false) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(lowerNumeric);
+        passwordOutput += randomChar;
+        console.log(passwordOutput); 
+    }
+// lower + special
+  } else if (lowerRequired === true && upperRequired === false && numericRequired === false && specialRequired === true) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(lowerSpecial);
+        passwordOutput += randomChar;
+        console.log(passwordOutput);     
+    } 
+// lower + upper + numeric
+  } else if (lowerRequired === true && upperRequired === true && numericRequired === true && specialRequired === false) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(lowerUpperNumeric);
+        passwordOutput += randomChar;
+        console.log(passwordOutput);        
+    }
+// lower + upper + special
+  } else if (lowerRequired === true && upperRequired === true && numericRequired === false && specialRequired === true) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(lowerUpperSpecial);
+        passwordOutput += randomChar;
+        console.log(passwordOutput);        
+    }
+// lower + upper + special + numeric
+  } else if (lowerRequired === true && upperRequired === true && numericRequired === true && specialRequired === true) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(lowerUpperSpecial);
+        passwordOutput += randomChar;
+        console.log(passwordOutput);        
+    }
+// upper + special
+  } else if (lowerRequired === false && upperRequired === true && numericRequired === false && specialRequired === true) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(upperSpecial);
+        passwordOutput += randomChar;
+        console.log(passwordOutput);  
+    } 
+// upper + numeric
+  } else if (lowerRequired === false && upperRequired === true && numericRequired === true && specialRequired === false) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(upperNumeric);
+        passwordOutput += randomChar;
+        console.log(passwordOutput);   
+    }
+// upper + special + numeric
+  } else if (lowerRequired === false && upperRequired === true && numericRequired === true && specialRequired === true) {
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(upperSpecialNumeric);
+        passwordOutput += randomChar;
+        console.log(passwordOutput); 
+    }
+// special + numeric
+  } else if (lowerRequired === false && upperRequired === false && numericRequired === true && specialRequired === true)
+      for (let i = 0; i < passwordLength; i++) {
+        getRandom(specialNumeric)
+      }
 
-// character types are known -> charObj
-// p/w length is known -> passwordLength - for loop up to passwordLength
+
+
+
+  // p/w length is known -> passwordLength - for loop up to passwordLength
 // if multiple character types selected, we can just concat the arrays and iterate through them to get a random element
 // output pw = concatenated string from each string of random chars - string.substring to define max length
 
 // for (let i = 0; i < passwordLength.length; i++) {
-  // if (charObj) {
     
    
   
