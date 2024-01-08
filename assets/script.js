@@ -90,23 +90,15 @@ var upperCasedCharacters = [
 
 //-- arrays end --
 //initialize global variables
-var characterTypes = ["lowercase characters", "uppercase characters", "numeric characters", "special characters"];
-var passwordPrompt = [];
+// var characterTypes = ["lowercase characters", "uppercase characters", "numeric characters", "special characters"];
+// var passwordPrompt = [];
 var passwordLength = 0;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  passwordPrompt.length = 0;
-  // https://www.geeksforgeeks.org/how-to-create-an-object-from-two-arrays-in-javascript/
-  function typesRequired(types, boolean) {
-    var obj = Object.fromEntries(
-      types.map((type, index) => [type, boolean[index]]),
-    );
-    return obj;
-  }
-  var charObj = typesRequired(characterTypes, passwordPrompt);
-  
-  var passwordLength = prompt("Please enter a number between 8 and 128 to choose your password length.");
+// passwordPrompt.length = 0;  
+
+var passwordLength = prompt("Please enter a number between 8 and 128 to choose your password length.");
  
   // https://www.w3schools.com/js/js_validation.asp
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
@@ -115,27 +107,36 @@ function getPasswordOptions() {
   } else {
     alert("Password meets length criteria!"); 
   
-  var promptResponse = [];
-  var falseCount = 0;
-  for (let i in characterTypes) {
-    promptResponse = (confirm(`Would you like your password to contain ${characterTypes[i]}?`));
-    if (promptResponse === true) { //use false as string to pass non-falsy value to passwordPrompt array
+  // var promptResponse = [];
+  // var falseCount = 0;
+  // for (let i in characterTypes) {
+  //   promptResponse = (confirm(`Would you like your password to contain ${characterTypes[i]}?`));
+    if (promptResponse === 'true') {
       passwordPrompt.push(promptResponse);
-    } else
+
+    } else if (promptResponse === 'false')
       falseCount ++;
       passwordPrompt.push(promptResponse);
       console.log(falseCount);
       console.log(passwordPrompt);
   }
-    if (falseCount = 4) {
+    if (falseCount === 4) {
       alert("Password must container at least one character type. Please try again!");
       getPasswordOptions();
       
     }
+    // // https://www.geeksforgeeks.org/how-to-create-an-object-from-two-arrays-in-javascript/
+    // function typesRequired(types, string) {
+    //   var obj = Object.fromEntries(
+    //     types.map((type, index) => [type, string[index]]),
+    //   );
+    // var charsToInclude = typesRequired(characterTypes, passwordPrompt);
+    
+    // return obj;
+    } generatePassword();
     return passwordLength;
-  }
-}
 
+//replace promptResponse variables and string literals with separate vars for each character type to then call later
 
 
 // Function for getting a random element from an array
@@ -148,6 +149,9 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
+console.log(charsToInclude);
+}
+
 // character types are known -> charObj
 // p/w length is known -> passwordLength - for loop up to passwordLength
 // if multiple character types selected, we can just concat the arrays and iterate through them to get a random element
@@ -156,7 +160,7 @@ function generatePassword() {
 // for (let i = 0; i < passwordLength.length; i++) {
   // if (charObj) {
     
-  }  
+   
   
 
 
